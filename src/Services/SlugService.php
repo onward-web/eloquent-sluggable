@@ -312,7 +312,6 @@ class SlugService
             // оставляем только значение которые соотвествуют текущей записи, путем удаления значений с несоответвующими значениями по composite primari key
             $filtered = null;
             foreach($this->model->getKeyName() as $item){
-                $value = $this->model->getAttribute($item);
 
                 $filtered = $collectionComposite->where($item, '===',$this->model->getAttribute($item));
                 $filtered->all();
@@ -325,7 +324,6 @@ class SlugService
             $currentItemBySlug = $collectionComposite->first();
             if($currentItemBySlug != null && $currentItemBySlug instanceof \Illuminate\Database\Eloquent\Model){
                 $currentSlug = $currentItemBySlug->getAttribute($attribute);
-                $slugFromCompositeByCurentItem = $currentSlug;
                 if (
                     $currentSlug === $slug ||
                     !$slug || strpos($currentSlug, $slug) === 0
@@ -349,14 +347,15 @@ class SlugService
         }
 
 
-        $collectionComposite = null;
+
 
 
         $method = $config['uniqueSuffix'];
+        $firstSuffix = $config['firstUniqueSuffix'];
         if ($method === null) {
-            $suffix = $this->generateSuffix($slug, $separator, $list, $collectionComposite, $attribute);
+            $suffix = $this->generateSuffix($slug, $separator, $list, $firstSuffix, $attribute);
         } elseif (is_callable($method)) {
-            $suffix = $method($slug, $separator, $list, $attribute);
+            $suffix = $method($slug, $separator, $list, $firstSuffix, $attribute);
         } else {
             throw new \UnexpectedValueException('Sluggable "uniqueSuffix" for ' . get_class($this->model) . ':' . $attribute . ' is not null, or a closure.');
         }
@@ -374,21 +373,38 @@ class SlugService
      *
      * @return string
      */
-    protected function generateSuffix(string $slug, string $separator, Collection $list, $firstSuffix): string
+    protected function generateSuffix(string $slug, string $separator, Collection $list, $firstSuffix, string $attribute): string
     {
         $len = strlen($slug . $separator);
 
-        // If the slug already exists, but belongs to
-        // our model, return the current suffix.
-        if ($list->search($slug) === $this->model->getKey()) {
-            $suffix = explode($separator, $slug);
+        if(is_array($this->model->getKeyName())){
 
-            return end($suffix);
+            if(is_string($slug)){
+
+                $suffix = explode($separator, $slug);
+                return end($suffix);
+            }
+
+            $list->transform(function($item, $key) use ($len, $attribute) {
+                return (int) substr($item->getAttribute($attribute), $len);
+            });
+
+        }else{
+            // If the slug already exists, but belongs to
+            // our model, return the current suffix.
+            if ($list->search($slug) === $this->model->getKey()) {
+                $suffix = explode($separator, $slug);
+
+                return end($suffix);
+            }
+
+            $list->transform(function($value, $key) use ($len) {
+                return (int) substr($value, $len);
+            });
+
+            $max = $list->max();
         }
 
-        $list->transform(function($value, $key) use ($len) {
-            return (int) substr($value, $len);
-        });
 
         $max = $list->max();
 
