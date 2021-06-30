@@ -324,6 +324,7 @@ class SlugService
             $currentItemBySlug = $collectionComposite->first();
             if($currentItemBySlug != null && $currentItemBySlug instanceof \Illuminate\Database\Eloquent\Model){
                 $currentSlug = $currentItemBySlug->getAttribute($attribute);
+                $slugFromCompositeByCurentItem = $currentSlug;
                 if (
                     $currentSlug === $slug ||
                     !$slug || strpos($currentSlug, $slug) === 0
@@ -353,7 +354,7 @@ class SlugService
         $method = $config['uniqueSuffix'];
         $firstSuffix = $config['firstUniqueSuffix'];
         if ($method === null) {
-            $suffix = $this->generateSuffix($slug, $separator, $list, $firstSuffix, $attribute);
+            $suffix = $this->generateSuffix($slug, $separator, $list, $firstSuffix, $attribute, $slugFromCompositeByCurentItem);
         } elseif (is_callable($method)) {
             $suffix = $method($slug, $separator, $list, $firstSuffix, $attribute);
         } else {
@@ -373,15 +374,15 @@ class SlugService
      *
      * @return string
      */
-    protected function generateSuffix(string $slug, string $separator, Collection $list, $firstSuffix, string $attribute): string
+    protected function generateSuffix(string $slug, string $separator, Collection $list, $firstSuffix, string $attribute, ?string $slugFromCompositeByCurentItem): string
     {
         $len = strlen($slug . $separator);
 
         if(is_array($this->model->getKeyName())){
 
-            if(is_string($slug)){
+            if(is_string($slugFromCompositeByCurentItem)){
 
-                $suffix = explode($separator, $slug);
+                $suffix = explode($separator, $slugFromCompositeByCurentItem);
                 return end($suffix);
             }
 
@@ -402,7 +403,7 @@ class SlugService
                 return (int) substr($value, $len);
             });
 
-            $max = $list->max();
+
         }
 
 
