@@ -80,7 +80,7 @@ class SlugService
     {
         $slug = $this->model->getAttribute($attribute);
 
-        if ($force || $this->needsSlugging($attribute, $config)) {
+        //if ($force || $this->needsSlugging($attribute, $config)) {
             $source = $this->getSlugSource($config['source']);
 
             if ($source || is_numeric($source)) {
@@ -88,7 +88,7 @@ class SlugService
                 $slug = $this->validateSlug($slug, $config, $attribute);
                 $slug = $this->makeSlugUnique($slug, $config, $attribute);
             }
-        }
+       // }
 
         return $slug;
     }
