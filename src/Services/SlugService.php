@@ -313,7 +313,7 @@ class SlugService
             $filtered = null;
             foreach($this->model->getKeyName() as $item){
 
-                $filtered = $collectionComposite->where($item, '===',$this->model->getAttribute($item));
+                $filtered = $collectionComposite->where($item, '==',$this->model->getAttribute($item));
                 $filtered->all();
 
                 $collectionComposite = $filtered;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4b7819a6-4e89-4f58-a60b-3f57130b3b5a" name="Default Changelist" comment="">
+    <list default="true" id="4b7819a6-4e89-4f58-a60b-3f57130b3b5a" name="Default Changelist" comment="check unique and generate slug always">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/SlugService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/SlugService.php" afterDir="false" />
     </list>
@@ -10,7 +10,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -44,17 +44,39 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1625053626091</updated>
-      <workItem from="1625053627417" duration="6611000" />
+      <workItem from="1625053627417" duration="7810000" />
+      <workItem from="1627652230558" duration="1499000" />
+      <workItem from="1628595232399" duration="677000" />
     </task>
+    <task id="LOCAL-00001" summary="check unique and generate slug always">
+      <created>1627655034577</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1627655034577</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="check unique and generate slug always" />
+    <option name="LAST_COMMIT_MESSAGE" value="check unique and generate slug always" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="986" y="433" width="587" height="534" key="find.popup" timestamp="1625058952308">
+    <state x="905" y="268" key="CommitChangelistDialog2" timestamp="1627655077965">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="986" y="433" width="587" height="534" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1625058952308" />
+    <state x="905" y="268" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1627655077965" />
+    <state x="872" y="419" key="Vcs.Push.Dialog.v2" timestamp="1627655210068">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="872" y="419" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1627655210068" />
+    <state x="986" y="433" width="587" height="534" key="find.popup" timestamp="1627654942874">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="986" y="433" width="587" height="534" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1627654942874" />
   </component>
 </project>
