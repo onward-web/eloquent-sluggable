@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4b7819a6-4e89-4f58-a60b-3f57130b3b5a" name="Default Changelist" comment="check unique and generate slug always">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/SlugService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/SlugService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +46,13 @@
       <updated>1625053626091</updated>
       <workItem from="1625053627417" duration="7810000" />
       <workItem from="1627652230558" duration="1499000" />
-      <workItem from="1628595232399" duration="677000" />
+      <workItem from="1628595232399" duration="3313000" />
+      <workItem from="1630370880632" duration="599000" />
+      <workItem from="1631257067048" duration="599000" />
+      <workItem from="1631387248626" duration="599000" />
+      <workItem from="1632419547432" duration="599000" />
+      <workItem from="1633194215708" duration="28000" />
+      <workItem from="1644085691801" duration="71000" />
     </task>
     <task id="LOCAL-00001" summary="check unique and generate slug always">
       <created>1627655034577</created>
@@ -70,10 +76,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="905" y="268" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1627655077965" />
-    <state x="872" y="419" key="Vcs.Push.Dialog.v2" timestamp="1627655210068">
+    <state x="872" y="419" key="Vcs.Push.Dialog.v2" timestamp="1629412710692">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="419" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1627655210068" />
+    <state x="872" y="419" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1629412710692" />
     <state x="986" y="433" width="587" height="534" key="find.popup" timestamp="1627654942874">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
