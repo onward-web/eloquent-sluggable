@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4b7819a6-4e89-4f58-a60b-3f57130b3b5a" name="Default Changelist" comment="check unique and generate slug always">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/SlugService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/SlugService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sluggable.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sluggable.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +53,9 @@
       <workItem from="1631387248626" duration="599000" />
       <workItem from="1632419547432" duration="599000" />
       <workItem from="1633194215708" duration="28000" />
-      <workItem from="1644085691801" duration="71000" />
+      <workItem from="1644085691801" duration="560000" />
+      <workItem from="1644130350836" duration="1363000" />
+      <workItem from="1650417932129" duration="6380000" />
     </task>
     <task id="LOCAL-00001" summary="check unique and generate slug always">
       <created>1627655034577</created>
@@ -72,17 +75,13 @@
     <option name="LAST_COMMIT_MESSAGE" value="check unique and generate slug always" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="905" y="268" key="CommitChangelistDialog2" timestamp="1627655077965">
+    <state x="1060" y="454" key="FileChooserDialogImpl" timestamp="1644131044220">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="905" y="268" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1627655077965" />
-    <state x="872" y="419" key="Vcs.Push.Dialog.v2" timestamp="1629412710692">
+    <state x="1060" y="454" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1644131044220" />
+    <state x="1561" y="77" width="889" height="1060" key="find.popup" timestamp="1650476781711">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="419" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1629412710692" />
-    <state x="986" y="433" width="587" height="534" key="find.popup" timestamp="1627654942874">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="986" y="433" width="587" height="534" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1627654942874" />
+    <state x="1561" y="77" width="889" height="1060" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1650476781711" />
   </component>
 </project>

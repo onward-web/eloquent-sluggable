@@ -13,6 +13,12 @@ use Illuminate\Database\Eloquent\Model;
 trait Sluggable
 {
 
+    public function getSluggableKeyFields(){
+        if(!$this->sluggableKeyFields){
+           throw new \Exception('Empty key Fields');
+        }
+    }
+
     /**
      * Hook into the Eloquent model events to create or
      * update the slug as required.

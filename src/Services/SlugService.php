@@ -80,7 +80,7 @@ class SlugService
     {
         $slug = $this->model->getAttribute($attribute);
 
-        //if ($force || $this->needsSlugging($attribute, $config)) {
+        if ($force || $this->needsSlugging($attribute, $config)) {
             $source = $this->getSlugSource($config['source']);
 
             if ($source || is_numeric($source)) {
@@ -88,7 +88,7 @@ class SlugService
                 $slug = $this->validateSlug($slug, $config, $attribute);
                 $slug = $this->makeSlugUnique($slug, $config, $attribute);
             }
-       // }
+        }
 
         return $slug;
     }
@@ -278,76 +278,47 @@ class SlugService
         $list = $this->getExistingSlugs($slug, $attribute, $config);
 
 
-        // if ...
-        // 	a) the list is empty, or
-        // 	b) our slug isn't in the list
-        // ... we are okay
+        // if our slug isn't in the list it okey
 
         // Выполняем поиск по slug в коллекции, имя атрибута $attribute
-        if(is_array($this->model->getKeyName())){
-            $filtered =  $list->where($attribute, '===', $slug);
-            $filtered->all();
-            if($filtered->count() === 0){
-                return $slug;
-            }
-
-        }else if(!is_array($this->model->getKeyName()) && $list->contains($slug) === false){
+        $filtered =  $list->where($attribute, '===', $slug);
+        $filtered->all();
+        if($filtered->count() === 0){
             return $slug;
         }
-
 
 
         // if our slug is in the list, but
         // 	a) it's for our model, or
         //  b) it looks like a suffixed version of our slug
         // ... we are also okay (use the current slug)
-        $slugFromCompositeByCurentItem = null;
-
-
-        if(is_array($this->model->getKeyName())){
-            $collectionComposite = $list;
+        $collectionComposite = $list;
 
 
 
-            // оставляем только значение которые соотвествуют текущей записи, путем удаления значений с несоответвующими значениями по composite primari key
-            $filtered = null;
-            foreach($this->model->getKeyName() as $item){
+        // оставляем только значение которые соотвествуют текущей записи, по  sluggableKeyFields
+        $filtered = null;
+        foreach($this->model->getSluggableKeyFields() as $fieldName => $fieldSetting){
 
-                $filtered = $collectionComposite->where($item, '==',$this->model->getAttribute($item));
-                $filtered->all();
+            $filtered = $collectionComposite->where($fieldName, '==', $this->model->getAttribute($fieldName));
+            $filtered->all();
 
-                $collectionComposite = $filtered;
-            }
-
-
-
-            $currentItemBySlug = $collectionComposite->first();
-            if($currentItemBySlug != null && $currentItemBySlug instanceof \Illuminate\Database\Eloquent\Model){
-                $currentSlug = $currentItemBySlug->getAttribute($attribute);
-                $slugFromCompositeByCurentItem = $currentSlug;
-                if (
-                    $currentSlug === $slug ||
-                    !$slug || strpos($currentSlug, $slug) === 0
-                ) {
-                    return $currentSlug;
-                }
-
-            }
-
-
-
-        }else if($list->has($this->model->getKey())){
-            $currentSlug = $list->get($this->model->getKey());
-
-            if (
-                $currentSlug === $slug ||
-                !$slug || strpos($currentSlug, $slug) === 0
-            ) {
-                return $currentSlug;
-            }
+            $collectionComposite = $filtered;
         }
 
+        $slugFromCompositeByCurentItem = null;
+        $currentItemBySlug = $collectionComposite->first();
+        if($currentItemBySlug != null && $currentItemBySlug instanceof \Illuminate\Database\Eloquent\Model){
+            $currentSlug = $currentItemBySlug->getAttribute($attribute);
+            $slugFromCompositeByCurentItem = $currentSlug;
+            if (
+                 $currentSlug === $slug ||
+                 !$slug || strpos($currentSlug, $slug) === 0
+            ) {
+                    return $currentSlug;
+            }
 
+        }
 
 
 
@@ -378,33 +349,15 @@ class SlugService
     {
         $len = strlen($slug . $separator);
 
-        if(is_array($this->model->getKeyName())){
+        if(is_string($slugFromCompositeByCurentItem)){
 
-            if(is_string($slugFromCompositeByCurentItem)){
-
-                $suffix = explode($separator, $slugFromCompositeByCurentItem);
-                return end($suffix);
-            }
-
-            $list->transform(function($item, $key) use ($len, $attribute) {
-                return (int) substr($item->getAttribute($attribute), $len);
-            });
-
-        }else{
-            // If the slug already exists, but belongs to
-            // our model, return the current suffix.
-            if ($list->search($slug) === $this->model->getKey()) {
-                $suffix = explode($separator, $slug);
-
-                return end($suffix);
-            }
-
-            $list->transform(function($value, $key) use ($len) {
-                return (int) substr($value, $len);
-            });
-
-
+            $suffix = explode($separator, $slugFromCompositeByCurentItem);
+            return end($suffix);
         }
+
+        $list->transform(function($item, $key) use ($len, $attribute) {
+            return (int) substr($item->getAttribute($attribute), $len);
+        });
 
 
         $max = $list->max();
@@ -438,33 +391,9 @@ class SlugService
             $query->withTrashed();
         }
 
-        /* Composite key edit */
-        $select = [];
-
-
-        if(is_array($this->model->getKeyName())){
-            $select[] = $attribute;
-            foreach($this->model->getKeyName() as $item){
-                $select[] = $item;
-            }
-        }else{
-            $select[] = $attribute;
-            $select[] = $this->model->getKeyName();
-        }
-        $select = array_unique($select);
-
-
-        // get the list of all matching slugs
-        $results = $query->select($select)
+        return $query->select(array_keys($this->model->getSluggableKeyFields()))
             ->get()
             ->toBase();
-
-
-        if(is_array($this->model->getKeyName())){
-            return $results;
-        }else{
-            return $results->pluck($attribute, $this->model->getKeyName());
-        }
     }
 
     /**
