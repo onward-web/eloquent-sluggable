@@ -14,9 +14,10 @@ trait Sluggable
 {
 
     public function getSluggableKeyFields(){
-        if(!$this->sluggableKeyFields){
-           throw new \Exception('Empty key Fields');
+        if(!$this->sluggableKeyFields && is_array($this->sluggableKeyFields)){
+           throw new \Exception('sluggableKeyFields must be array');
         }
+        return $this->sluggableKeyFields;
     }
 
     /**
