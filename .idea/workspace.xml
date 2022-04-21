@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4b7819a6-4e89-4f58-a60b-3f57130b3b5a" name="Default Changelist" comment="check unique and generate slug always">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sluggable.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sluggable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/SlugService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/SlugService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +54,7 @@
       <workItem from="1633194215708" duration="28000" />
       <workItem from="1644085691801" duration="560000" />
       <workItem from="1644130350836" duration="1363000" />
-      <workItem from="1650417932129" duration="6907000" />
+      <workItem from="1650417932129" duration="8338000" />
     </task>
     <task id="LOCAL-00001" summary="check unique and generate slug always">
       <created>1627655034577</created>

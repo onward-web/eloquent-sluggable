@@ -391,7 +391,10 @@ class SlugService
             $query->withTrashed();
         }
 
-        return $query->select(array_keys($this->model->getSluggableKeyFields()))
+        $columns = array_keys($this->model->getSluggableKeyFields());
+        $columns[] = $attribute;
+
+        return $query->select($columns)
             ->get()
             ->toBase();
     }
